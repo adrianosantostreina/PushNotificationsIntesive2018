@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{E27D4AAA-EF9D-4131-978B-C51B32011E77}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="mobile\AdrianoPush.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="servidor\DataSnap.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="servidor desktop\Project1.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="AdrianoPush">
+        <MSBuild Projects="mobile\AdrianoPush.dproj"/>
+    </Target>
+    <Target Name="AdrianoPush:Clean">
+        <MSBuild Projects="mobile\AdrianoPush.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AdrianoPush:Make">
+        <MSBuild Projects="mobile\AdrianoPush.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DataSnap">
+        <MSBuild Projects="servidor\DataSnap.dproj"/>
+    </Target>
+    <Target Name="DataSnap:Clean">
+        <MSBuild Projects="servidor\DataSnap.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DataSnap:Make">
+        <MSBuild Projects="servidor\DataSnap.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project1">
+        <MSBuild Projects="servidor desktop\Project1.dproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="servidor desktop\Project1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="servidor desktop\Project1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="AdrianoPush;DataSnap;Project1"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="AdrianoPush:Clean;DataSnap:Clean;Project1:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="AdrianoPush:Make;DataSnap:Make;Project1:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
